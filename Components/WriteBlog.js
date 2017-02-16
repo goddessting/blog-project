@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import $ from 'jquery';
 
+const port = require('../settings');
+
 class WriteBlog extends Component {
     submitHandler() {
         let title = this.refs.title.value.trim();
@@ -9,13 +11,14 @@ class WriteBlog extends Component {
         let content = this.refs.content.value.trim();
 
         $.ajax({
-            url: 'http://localhost:3000/publish',
+            url: 'http://localhost:'+port.port+'/publish',
             type: 'POST',
             async: true,
             data: {title, writer, content},
             success: function (data) {
-                if (data) {
-                    self.location = "/#/";
+                alert(data);
+                if (data == 'save success') {
+                    self.location = "/#/welcome";
                 }
             }
         })

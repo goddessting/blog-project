@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const db = require('./db/connection');
 const execute = require('./db/execute');
+const port = require('../settings');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,7 +26,10 @@ app.use(express.static('./', {
 
 app.post('/publish', execute.insertBlog);
 app.get('/getBlogs', execute.getBlogs);
+app.get('/getBlog/:id', execute.getBlog);
+app.put('/modify', execute.modifyBlog);
+app.delete('/delete/:id', execute.deleteBlog);
 
-app.listen(3000, function () {
-    console.log('Express server is listening on port 3000');
+app.listen(port.port, function () {
+    console.log('Express server is listening on port ' + port.port);
 });

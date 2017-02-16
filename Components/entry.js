@@ -5,14 +5,16 @@ import React from 'react';
 import App from './App';
 import Header from './Header';
 import WriteBlog from './WriteBlog';
-import BlogInfo from './BlogInfo';
+import EditBlog from './EditBlog';
+import InfoBlog from './InfoBlog';
 
 const router = <Router history={hashHistory}>
     <Route path='/' component={App}>
         <IndexRoute component={Header} />
         <Route path='welcome' component={Header} />
         <Route path='writeBlog' component={WriteBlog} />
-        <Route path='blog/:id' component={BlogInfo} />
+        <Route path='blog/:id' component={InfoBlog} />
+        <Route path='/editBlog/:id' component={EditBlog} />
     </Route>
 </Router>;
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import $ from 'jquery';
+const port = require('../settings');
 
 class BlogList extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class BlogList extends Component {
     }
 
     componentDidMount() {
-        $.get('http://localhost:3000/getBlogs', function (result) {
+        $.get('http://localhost:'+port.port+'/getBlogs', function (result) {
             this.setState({
                 blogs: result
             });
@@ -21,8 +22,8 @@ class BlogList extends Component {
     render() {
         const blogsRows = this.state.blogs.map(blog =>
             <div>
-                <Link to="/blogs/{blog.id}">
-                    <p><span><h2>{blog.title}</h2>作者：{blog.writer} 发布时间：{blog.createdAt}</span></p>
+                <Link to={`blog/${blog._id}`}>
+                    <p><span><h2>{blog.title}</h2>作者：{blog.writer} 发布时间：{blog.createdAt.substr(0,10)}</span></p>
                     <p>{blog.content}</p>
                     <hr/>
                 </Link>

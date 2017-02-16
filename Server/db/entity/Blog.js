@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema(
     {
-        writer: { type: String, unique: true, required: true },
-        title: { type: String, required: true },
-        content:{type: String,required:true},
-        motifyWriter: {type:String}
+        title: {type: String, required: true},
+        writer: {type: String, unique: true, required: true},
+        content: {type: String, required: true},
+        modifier: {type: String}
     },
-    { timestamps: true }
+    {timestamps: true}
 );
 
 module.exports = mongoose.model('Blog', UserSchema);
