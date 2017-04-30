@@ -1,5 +1,6 @@
-var Blog = require('./entity/Blog');
-const db = require('./connection');
+const Blog = require('../model/blog');
+const User = require('../model/user');
+const db = require('./../connection');
 
 exports.insertBlog = function (req, res) {
     let blog = new Blog({
@@ -9,8 +10,13 @@ exports.insertBlog = function (req, res) {
         modifier: ''
     });
 
-    blog.save();
-    res.status(200).json("save success");
+    blog.save(function (err) {
+        if (err) {
+            return res.json({tip: err.message});
+        } else {
+            return res.json({tip: "save success"});
+        }
+    });
 };
 
 exports.getBlogs = function (req, res) {
@@ -51,8 +57,6 @@ exports.modifyBlog = function (req, res) {
 };
 
 exports.deleteBlog = function (req, res) {
-    console.log("==="+req.params.id);
-
     Blog.findById({_id: req.params.id}, function (err, blog) {
         if (err) return res.status(500).json({error: err.message});
 
@@ -60,5 +64,19 @@ exports.deleteBlog = function (req, res) {
             if (err) return res.status(500).json({error: err.message});
             res.status(200).json("delete success");
         });
+    });
+};
+
+exports.login = function (req, res) {
+    User.find({username: req.body.username}).exec(function (err, user) {
+        if (err) return res.status(500).json({error: err.message});
+        if (user) {
+            if (user[0].password === req.body.password) {
+                res.status(200).json("login success");
+            } else {
+                res.status(400).json("password false");
+            }
+        }
+        // res.send('该用户不存在');
     });
 };

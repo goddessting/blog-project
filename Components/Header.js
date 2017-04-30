@@ -8,6 +8,8 @@ class Header extends Component {
             <div>
                 <h1>TBB BlOG</h1>
                 <Link to="/writeBlog"><button>写博客</button></Link>
+                <Link to="/login"><button>登录</button></Link>
+                <Link to="/signUp"><button>注册</button></Link>
                 <BlogList />
             </div>
         )

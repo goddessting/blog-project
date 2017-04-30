@@ -85,7 +85,6 @@ class BlogInfo extends Component {
                     <div>修改人：<input type="text" value={modifier} ref="modifier"
                                     onChange={this.handleChange_modifier.bind(this)}/></div>
                     <button type="submit">更新</button>
-                    <DeleteBlog _id={id}/>
                 </form>
             </div>
         );

@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-
-var UserSchema = new Schema(
+var BlogSchema = new mongoose.Schema(
     {
         title: {type: String, required: true},
         writer: {type: String, unique: true, required: true},
@@ -12,4 +10,4 @@ var UserSchema = new Schema(
     {timestamps: true}
 );
 
-module.exports = mongoose.model('Blog', UserSchema);
+module.exports = BlogSchema;

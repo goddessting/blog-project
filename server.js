@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const db = require('./db/connection');
-const execute = require('./db/execute');
-const port = require('../settings');
+const db = require('./Server/connection');
+const execute = require('./Server/entity/execute');
+const logup = require('./Server/entity/user');
+const port = require('./settings');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -29,6 +30,8 @@ app.get('/getBlogs', execute.getBlogs);
 app.get('/getBlog/:id', execute.getBlog);
 app.put('/modify', execute.modifyBlog);
 app.delete('/delete/:id', execute.deleteBlog);
+app.post('/logup', logup.logup);
+app.post('/login', execute.login);
 
 app.listen(port.port, function () {
     console.log('Express server is listening on port ' + port.port);

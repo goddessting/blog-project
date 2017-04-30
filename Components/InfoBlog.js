@@ -38,7 +38,7 @@ class BlogInfo extends Component {
         return (
             <div>
                 <Link to="/welcome">返回首页</Link>
-                <Link to={`/editBlog/${this.props.params.id}`}>编辑</Link>
+                <Link to={`editBlog/${this.props.params.id}`}>编辑</Link>
                 <DeleteBlog _id={this.props.params.id}/>
 
                 <div>标题：{title}</div>

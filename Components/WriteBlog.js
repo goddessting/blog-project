@@ -10,18 +10,18 @@ class WriteBlog extends Component {
         let writer = this.refs.writer.value.trim();
         let content = this.refs.content.value.trim();
 
-        $.ajax({
-            url: 'http://localhost:'+port.port+'/publish',
-            type: 'POST',
-            async: true,
-            data: {title, writer, content},
-            success: function (data) {
-                alert(data);
-                if (data == 'save success') {
-                    self.location = "/#/welcome";
-                }
-            }
-        })
+        // $.ajax({
+        //     url: 'http://localhost:'+port.port+'/publish',
+        //     type: 'POST',
+        //     async: true,
+        //     data: {title, writer, content},
+        //     success: function (data) {
+        //         alert(data);
+        //         if (data == 'save success') {
+        //             self.location = "/#/welcome";
+        //         }
+        //     }
+        // })
     }
 
     render() {
